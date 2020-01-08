@@ -14,13 +14,9 @@ import java.util.ArrayList;
 
 public class CustomListViewAdapter extends BaseAdapter {
     LayoutInflater inflater = null;
-    private ArrayList<CustomListViewItem> Data = null;
-    private int Cnt = 0;
+    private ArrayList<CustomListViewItem> Data = new ArrayList<>();
+    private int Cnt = Data.size();
 
-    public CustomListViewAdapter(ArrayList<CustomListViewItem> data) {
-        Data = data;
-        Cnt = data.size();
-    }
     @Override
     public int getCount() {
         return Cnt;
@@ -38,6 +34,7 @@ public class CustomListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
         final int pos = position;
+
         if (inflater == null) {
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -54,10 +51,17 @@ public class CustomListViewAdapter extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Data.remove(pos);
+                Cnt--;
                 Toast.makeText(context, pos+1 + "번째 아이템이 선택되었습니다.", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
             }
         });
 
         return convertView;
+    }
+    public void add(CustomListViewItem item){
+        Data.add(item);
+        Cnt++;
     }
 }

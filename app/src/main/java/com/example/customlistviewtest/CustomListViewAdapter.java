@@ -21,17 +21,14 @@ public class CustomListViewAdapter extends BaseAdapter {
         Data = data;
         Cnt = data.size();
     }
-
     @Override
     public int getCount() {
         return Cnt;
     }
-
     @Override
     public Object getItem(int position) {
         return null;
     }
-
     @Override
     public long getItemId(int position) {
         return 0;
@@ -57,7 +54,7 @@ public class CustomListViewAdapter extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, pos + "번째 아이템이 선택되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, pos+1 + "번째 아이템이 선택되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -6,14 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import java.util.ArrayList;
 
 public class CustomListViewAdapter extends BaseAdapter {
+
     LayoutInflater inflater = null;
+    private ImageView img;
+    private TextView name;
+    private Button button;
+    private Switch onOffSwitch;
     private ArrayList<CustomListViewItem> Data = new ArrayList<>();
     private int Cnt = Data.size();
 
@@ -23,11 +32,11 @@ public class CustomListViewAdapter extends BaseAdapter {
     }
     @Override
     public Object getItem(int position) {
-        return null;
+        return Data.get(position);
     }
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -39,9 +48,11 @@ public class CustomListViewAdapter extends BaseAdapter {
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         convertView = inflater.inflate(R.layout.customlistviewitem, parent, false);
-        ImageView img = (ImageView) convertView.findViewById(R.id.Img);
-        TextView name = (TextView) convertView.findViewById(R.id.Name);
-        Button button = (Button) convertView.findViewById(R.id.button);
+
+        img = (ImageView) convertView.findViewById(R.id.Img);
+        name = (TextView) convertView.findViewById(R.id.Name);
+        button = (Button) convertView.findViewById(R.id.button);
+        onOffSwitch = (Switch)convertView.findViewById(R.id.Onoff);
 
         CustomListViewItem listViewItem = Data.get(position);
 
@@ -53,11 +64,20 @@ public class CustomListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Data.remove(pos);
                 Cnt--;
-                Toast.makeText(context, pos+1 + "번째 아이템이 선택되었습니다.", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
             }
         });
 
+        onOffSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton button, boolean isChecked){
+                if(isChecked){
+                    Toast.makeText(context, (pos+1)+"번째 아이템 " +"on",Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(context, (pos+1)+"번째 아이템 " +"off", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return convertView;
     }
     public void add(CustomListViewItem item){

@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView customListView = null;
     private Button createButton;
     CustomListViewAdapter customListViewAdapter = new CustomListViewAdapter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
         createButton = (Button)findViewById(R.id.Create);
         customListView = (ListView)findViewById(R.id.ListView);
 
-        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man2), "아무개"));
-        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man2), "아무개"));
-        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man2), "아무개"));
-        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man2), "아무개"));
+        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man2), "김학생"));
+        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.man3), "이학생"));
+        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.woman1), "배학생"));
+        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.woman3), "도학생"));
+        customListViewAdapter.add(new CustomListViewItem(getDrawable(R.drawable.woman2), "여학생"));
 
         customListView.setAdapter(customListViewAdapter);
 

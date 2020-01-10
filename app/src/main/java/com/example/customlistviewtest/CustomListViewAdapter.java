@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class CustomListViewAdapter extends BaseAdapter {
 
-    LayoutInflater inflater = null;
+    private LayoutInflater inflater = null;
     private ImageView img;
     private TextView name;
     private Button button;

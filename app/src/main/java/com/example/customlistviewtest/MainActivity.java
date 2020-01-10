@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<CustomListViewItem> listViewItems = new ArrayList<>();
     private ListView customListView = null;
     private Button createButton;
-    CustomListViewAdapter customListViewAdapter = new CustomListViewAdapter();
+    private CustomListViewAdapter customListViewAdapter = new CustomListViewAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
